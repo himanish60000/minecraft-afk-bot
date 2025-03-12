@@ -3,15 +3,11 @@ const socket = io();
 let messageHistory = [];
 let historyIndex = -1;
 
-// ✅ Display received chat messages in real-time with hover text
-socket.on('chatMessage', (data) => {
-    const { message, hoverText } = data;
+// ✅ Display received chat messages in real-time
+socket.on('chatMessage', (message) => {
     const chatBox = document.getElementById('chatBox');
     const newMessage = document.createElement('div');
     newMessage.textContent = message;
-    if (hoverText) {
-        newMessage.title = hoverText; // Set hover text
-    }
     chatBox.appendChild(newMessage);
 
     // Auto-scroll to latest message
@@ -55,7 +51,7 @@ function sendMessage() {
     const chatInput = document.getElementById('chatInput');
     const message = chatInput.value.trim();
     if (message) {
-        socket.emit('sendMessageToServer', { message, hoverText: "Hover message example" }); // Add hover text here
+        socket.emit('sendMessageToServer', message); // Send to Minecraft
 
         // Store message in history
         messageHistory.push(message);
