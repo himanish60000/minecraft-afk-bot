@@ -37,6 +37,13 @@ function createBot() {
     bot.on("error", (err) => {
         console.error("[❌] Bot Error:", err);
     });
+    socket.on("connect", () => {
+    console.log("[✅] Connected to WebSocket server:", process.env.WEBSOCKET_SERVER_URL);
+    });
+    socket.on("disconnect", () => {
+    console.log("[❌] Disconnected from WebSocket server!");
+    });
+
 }
 
 // Start the bot
