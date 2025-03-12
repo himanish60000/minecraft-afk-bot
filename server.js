@@ -17,14 +17,16 @@ io.on('connection', (socket) => {
   console.log('User connected');
 
   // ✅ Broadcast chat messages to all users
-  socket.on('chatMessage', (message) => {
-    io.emit('chatMessage', message);
+  socket.on('chatMessage', (data) => {
+    const { message, hoverText } = data;
+    io.emit('chatMessage', { message, hoverText });
   });
 
   // ✅ Listen for messages from the website & send them to the bot
-  socket.on('sendMessageToServer', (message) => {
+  socket.on('sendMessageToServer', (data) => {
+    const { message, hoverText } = data;
     console.log(`Received message from website: ${message}`);
-    io.emit('sendMessageToServer', message); // Forward message to bots
+    io.emit('sendMessageToServer', { message, hoverText }); // Forward message to bots
   });
 
   socket.on('disconnect', () => {
