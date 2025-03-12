@@ -75,6 +75,6 @@ function createBot(username, host, port) {
 }
 
 // Create bots (you can add more bots with different usernames, IPs, and ports)
-createBot('Flash404', 'jartex.fun', 25565);
+createBot('saber', 'jartex.fun', 25565);
 
 module.exports = { createBot };
