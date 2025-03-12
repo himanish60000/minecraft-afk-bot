@@ -12,6 +12,12 @@ function createBot(username, host, port) {
         port: port,
         username: username,
     });
+    // Disable events that may cause unnecessary chunk loading
+    bot.removeAllListeners("chunkColumnLoad"); // Disabling chunk loading events
+    bot.removeAllListeners("chunkColumnUnload"); // Disabling chunk unloading events
+    bot.removeAllListeners("blockUpdate"); // Stops tracking block changes
+    bot.removeAllListeners("physicsTick"); // Reduces CPU load
+    bot.removeAllListeners("health"); // Stops checking bot health
 
     // Create a folder to store logs (if it doesn't exist)
     const logsDirectory = path.join(__dirname, 'chat_logs');
@@ -73,9 +79,6 @@ function createBot(username, host, port) {
         logStream.write(quitMessage);
         logStream.end(); // Close the file stream when bot quits
     });
-    bot.removeAllListeners("physicsTick"); // Reduces CPU load
-    bot.removeAllListeners("blockUpdate"); // Stops tracking block changes
-    bot.removeAllListeners("health"); // Stops checking bot health
     // Store bot instance
     bots.push(bot);
 }
