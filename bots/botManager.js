@@ -49,12 +49,11 @@ function createBot(username, host, port) {
         const chatMessage = `[${new Date().toLocaleTimeString()}] ${message}\n`;
         console.log(`Chat: ${message}`);
         logStream.write(chatMessage);  // Save chat message to log file
-        socket.emit('chatMessage', { message, hoverText: "Hover text from server" }); // Send chat to frontend with hover text
+        socket.emit('chatMessage', message); // Send chat to frontend
     });
 
     // Handle incoming messages from the website to the bot
-    socket.on('sendMessageToServer', (data) => {
-        const { message, hoverText } = data;
+    socket.on('sendMessageToServer', (message) => {
         console.log(`Sending to server: ${message}`);
         bot.chat(message); // Send message to Minecraft server
     });
@@ -88,3 +87,5 @@ function createBot(username, host, port) {
 createBot('saber', 'jartex.fun', 25565);
 
 module.exports = { createBot };
+
+
