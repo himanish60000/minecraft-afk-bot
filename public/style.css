@@ -1,0 +1,62 @@
+/* General Console Theme */
+body {
+    font-family: "Courier New", monospace;
+    background-color: black;
+    color: #00ff00;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Console Container */
+.console-container {
+    width: 80%;
+    max-width: 800px;
+    height: 500px;
+    background-color: black;
+    border: 2px solid #00ff00;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chat Box */
+#chatBox {
+    flex-grow: 1;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Console Prefix (>) */
+.console-prefix {
+    color: #00ff00;
+    font-weight: bold;
+}
+
+/* Input Line */
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+/* Console Input */
+#chatInput {
+    background: black;
+    border: none;
+    color: #00ff00;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    flex-grow: 1;
+    outline: none;
+    caret-color: #00ff00;
+}
+
+/* Cursor Effect (Flashing) */
+@keyframes blink {
