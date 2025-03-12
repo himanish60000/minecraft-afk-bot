@@ -53,7 +53,7 @@ function createBot(username, host, port) {
         const disconnectMessage = `${username} disconnected: ${reason}. Reconnecting in 5s...\n`;
         console.log(disconnectMessage);
         logStream.write(disconnectMessage);  // Log disconnect message
-        setTimeout(() => createBot(username, host, port), 5000);  // Reconnect after 5 seconds
+        setTimeout(() => createBot(username, host, port), 15000);  // Reconnect after 5 seconds
     });
 
     // Handle errors
@@ -69,7 +69,9 @@ function createBot(username, host, port) {
         logStream.write(quitMessage);
         logStream.end(); // Close the file stream when bot quits
     });
-
+    bot.removeAllListeners("physicsTick"); // Reduces CPU load
+    bot.removeAllListeners("blockUpdate"); // Stops tracking block changes
+    bot.removeAllListeners("health"); // Stops checking bot health
     // Store bot instance
     bots.push(bot);
 }
@@ -78,7 +80,6 @@ function createBot(username, host, port) {
 createBot('saber', 'jartex.fun', 25565);
 
 module.exports = { createBot };
-
 
 
 
