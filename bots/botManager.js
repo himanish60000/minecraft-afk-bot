@@ -1,14 +1,17 @@
 const mineflayer = require("mineflayer");
+const { io } = require("socket.io-client");
+
+// Connect to the WebSocket server (your website's backend)
+const socket = io(process.env.WEBSOCKET_SERVER_URL); // Ensure this is set in Railway
 
 // Bot Configuration
 const botOptions = {
     host: process.env.MC_SERVER_IP, // Minecraft server IP (set in Railway)
     username: process.env.BOT_USERNAME, // Bot username
     password: process.env.BOT_PASSWORD || undefined, // Optional for premium accounts
-    version: "1.20", // Adjust based on server version
+    version: "1.20",
 };
 
-// Create and Manage Bot
 let bot;
 
 function createBot() {
@@ -20,13 +23,15 @@ function createBot() {
     });
 
     bot.on("message", (jsonMsg) => {
-        console.log("[💬] Minecraft Chat:", jsonMsg.toString());
+        const message = jsonMsg.toString();
+        console.log("[💬] Minecraft Chat:", message);
+        socket.emit("chatMessage", message); // Send to WebSocket server
     });
 
     bot.on("end", (reason) => {
         console.log(`[⚠] Bot disconnected: ${reason}`);
         console.log("[🔄] Reconnecting in 15 seconds...");
-        setTimeout(createBot, 15000); // Reconnect after 15s instead of 5s (less resource usage)
+        setTimeout(createBot, 15000);
     });
 
     bot.on("error", (err) => {
