@@ -3,8 +3,8 @@
 /* General Console Theme */
 body {
     font-family: 'Press Start 2P', cursive;
-    background-color: black;
-    color: #00ff00;
+    background-color: #2E8B57; /* Dark green */
+    color: #D3D3D3; /* Light grey */
     text-align: left;
     margin: 0;
     padding: 0;
@@ -12,6 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('mc_wallpaper.png');
+    background-size: cover;
 }
 
 /* Console Container */
