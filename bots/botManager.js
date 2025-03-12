@@ -16,7 +16,7 @@ function createBot() {
 
     bot.on("login", () => {
         console.log(`[✅] Bot ${bot.username} has joined ${botOptions.host}`);
-        bot.chat("Hello! I am online now!"); // Sends a message when bot joins
+        bot.chat("/login ilovenoone"); // Sends a message when bot joins
     });
 
     bot.on("message", (jsonMsg) => {
