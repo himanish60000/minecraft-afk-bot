@@ -31,7 +31,11 @@ function createBot(username, host, port) {
     bot.on('spawn', () => {
         const message = `Bot ${username} has joined the server at ${host} on ${new Date().toLocaleString()}\n`;
         logStream.write(message);
-        bot.chat("/login ilovenoone"); // Send a message when the bot joins
+        bot.chat("/login ilovenoone"); // Send a message when the bot joins             
+        // Send a message 10 seconds after joining
+        setTimeout(() => {
+            bot.chat('/server gens');
+        }, 10000);
     });
 
     // Listen for in-game chat and log it to the file
