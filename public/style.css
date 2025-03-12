@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /* General Console Theme */
 body {
-    font-family: "Courier New", monospace;
+    font-family: 'Press Start 2P', cursive;
     background-color: black;
     color: #00ff00;
     text-align: left;
@@ -19,6 +21,7 @@ body {
     height: 500px;
     background-color: black;
     border: 2px solid #00ff00;
+    border-radius: 0;
     padding: 10px;
     overflow: hidden;
     display: flex;
@@ -42,6 +45,7 @@ body {
 
 /* Input Line */
 .input-line {
+    border-radius: 0;
     display: flex;
     align-items: center;
 }
@@ -60,3 +64,8 @@ body {
 
 /* Cursor Effect (Flashing) */
 @keyframes blink {
+    05% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
