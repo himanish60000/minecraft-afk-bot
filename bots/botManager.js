@@ -40,7 +40,7 @@ function createBot(username, host, port) {
         bot.chat("/login ilovenoone"); // Send a message when the bot joins             
         // Send a message 10 seconds after joining
         setTimeout(() => {
-            bot.chat('/server gens');
+            bot.chat('/server oneblock');
         }, 10000);
     });
 
